@@ -174,24 +174,14 @@ public class ControllerImpl implements ControllerInterface {
 
       try {
 
-        int index = 0;
-        for(int i = imageName.length() - 1; i >= 0; i--) {
-          if(String.valueOf(imageName.charAt(i)).equals(".")) {
-            index = i;
-            break;
-          }
-        }
+        this.model.addImage(new PPMImage(imageName), saveAsImage);
 
-        String file = imageName.substring(index + 1);
-
-        System.out.println(file);
-
-        if(file.equals("ppm")) {
-          this.model.addImage(new PPMImage(imageName), saveAsImage);
-        } else {
-          this.model.addImage(new GenericImage(imageName), saveAsImage);
-        }
-        this.renderMessage("Loaded image: '" + saveAsImage + "'\n");
+//        if(file.equals("ppm")) {
+//          this.model.addImage(new PPMImage(imageName), saveAsImage);
+//        } else {
+//          this.model.addImage(new GenericImage(imageName), saveAsImage);
+//        }
+//        this.renderMessage("Loaded image: '" + saveAsImage + "'\n");
 
       } catch (FileNotFoundException e) {
         this.renderMessage("File not found");
