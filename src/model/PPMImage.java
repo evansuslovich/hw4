@@ -2,12 +2,13 @@ package model;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 
 /**
  * Represents the PPM image.
  */
-public class PPMImage implements ImageInterface {
+public class PPMImage extends AbstractImage {
   private Pixel[][] image;
   private int width;
   private int height;
@@ -19,10 +20,8 @@ public class PPMImage implements ImageInterface {
    * @param fileAddress String: file address used in readPPM
    * @throws FileNotFoundException thrown in the readPPM if the file is not found in directory
    */
-  public PPMImage(String fileAddress) throws FileNotFoundException {
-    this.image = readPPM(fileAddress);
-    this.width = image.length;
-    this.height = image[0].length;
+  public PPMImage(String fileAddress) throws IOException {
+    super(fileAddress);
     this.maxValue = this.maxImageRGBValue();
   }
 
@@ -31,9 +30,7 @@ public class PPMImage implements ImageInterface {
    * @param pixels : the 2D array representing the image
    */
   public PPMImage(Pixel[][] pixels) {
-    this.image = pixels;
-    this.width = this.image.length;
-    this.height = this.image[0].length;
+    super(pixels);
     this.maxValue = this.maxImageRGBValue();
   }
 
@@ -43,48 +40,7 @@ public class PPMImage implements ImageInterface {
    * @return Pixel[][]: a 2D array of Pixels (which represent the RGB values)
    * @throws FileNotFoundException : if the file isn't found in the directory
    */
-  public Pixel[][] readPPM(String filename) throws FileNotFoundException {
-    Scanner sc;
 
-    try {
-      sc = new Scanner(new FileInputStream(filename));
-    }
-    catch (FileNotFoundException e) {
-      throw new FileNotFoundException();
-    }
-
-    StringBuilder builder = new StringBuilder();
-    //read the file line by line, and populate a string. This will throw away any comment lines
-    while (sc.hasNextLine()) {
-      String s = sc.nextLine();
-      if (s.charAt(0)!='#') {
-        builder.append(s + System.lineSeparator());
-      }
-    }
-
-    //now set up the scanner to read from the string we just built
-    sc = new Scanner(builder.toString());
-
-    String token;
-
-    token = sc.next();
-    if (!token.equals("P3")) {
-      System.out.println("Invalid PPM file: plain RAW file should begin with P3");
-    }
-    int width = sc.nextInt();
-    int height = sc.nextInt();
-    int maxValue = sc.nextInt();
-
-    Pixel[][] pixels = new Pixel[height][width];
-
-    for (int i = 0; i < height; i++) {
-      for (int j = 0; j < width; j++) {
-        pixels[i][j] = new Pixel(sc.nextInt(),sc.nextInt(), sc.nextInt());
-      }
-    }
-
-    return pixels;
-  }
 
   /**
    * Finds the maximum rgb value in the 2D array
