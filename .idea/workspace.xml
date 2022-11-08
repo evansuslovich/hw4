@@ -2,10 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9c253895-6869-4775-af85-7992f558aa25" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Test/TestGenericImage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/GenericImage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controller/ControllerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/ControllerImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/GenericImage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/GenericImage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/ImageInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/ImageInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/PPMImage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/PPMImage.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,22 +35,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Downloaded.Files.Path.Enabled": "false",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/Users/evansuslovich/Desktop/CS-3500/homework/hw4/src/Pictures",
-    "nodejs_package_manager_path": "npm",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "preferences.lookFeel"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/evansuslovich/Desktop/CS-3500/homework/hw4/src/Pictures&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/Pictures" />
@@ -66,7 +67,7 @@
       <recent name="Strategies" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.ImageProcessing">
+  <component name="RunManager" selected="Application.GenericImage">
     <configuration name="GenericImage" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="model.GenericImage" />
       <module name="hw4" />
@@ -93,12 +94,9 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestController.testLoad" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TestGenericImage" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="TestGenericImage" />
       <module name="hw4" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="TestController" />
-      <option name="METHOD_NAME" value="testLoad" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -125,11 +123,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.ImageProcessing" />
-        <item itemvalue="JUnit.TestGenericImage.testGenericImageConstructorPurple" />
-        <item itemvalue="JUnit.TestGenericImage.testGenericImageConstructor" />
         <item itemvalue="Application.GenericImage" />
-        <item itemvalue="JUnit.TestController.testLoad" />
+        <item itemvalue="Application.TestGenericImage" />
+        <item itemvalue="Application.ImageProcessing" />
+        <item itemvalue="JUnit.TestGenericImage.testGenericImageConstructor" />
+        <item itemvalue="JUnit.TestGenericImage.testGenericImageConstructorPurple" />
       </list>
     </recent_temporary>
   </component>
@@ -155,6 +153,7 @@
       <workItem from="1667481400790" duration="1132000" />
       <workItem from="1667496635697" duration="16390000" />
       <workItem from="1667868065579" duration="8482000" />
+      <workItem from="1667883790860" duration="8418000" />
     </task>
     <servers />
   </component>
