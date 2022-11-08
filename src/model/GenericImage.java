@@ -8,13 +8,12 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-public class GenericImage implements ImageInterface {
+public class GenericImage extends AbstractImage implements ImageInterface {
 
   private Pixel[][] image;
   private int width;
   private int height;
 
-  private int maxValue;
 
   public GenericImage(String fileAddress) throws IOException {
     this.image = readImage(fileAddress);
@@ -24,11 +23,10 @@ public class GenericImage implements ImageInterface {
 
   public Pixel[][] readImage(String filename) throws IOException{
 
-
     BufferedImage img =  ImageIO.read(new File(filename));
 
-
     Pixel[][] newImage = new Pixel[img.getWidth()][img.getHeight()];
+
     for (int x = 0; x < img.getWidth(); x++) {
       for (int y = 0; y < img.getHeight(); y++) {
         Color color = new Color(img.getRGB(x, y));
@@ -38,34 +36,47 @@ public class GenericImage implements ImageInterface {
     return newImage;
   }
 
-  /**
-   * Finds the maximum rgb value in the 2D array
-   * @return Integer, returns the maximum RGB value
-   */
-  private int maxImageRGBValue() {
-    int max = 0;
-    for (int h = 0; h <this.height; h++) {
-      for (int w = 0; w < this.width; w++) {
-        max = Math.max(this.image[w][h].maxRGBValue(), max);
+  public void saveImage(String pathName) {
+    BufferedImage img = new BufferedImage(this.width, this.height, BufferedImage.TYPE_INT_RGB);
+
+    for (int x = 0; x < this.width; x++) {
+      for (int y = 0; y < this.height; y++) {
+        int red = this.image[x][y].getPixel()[0];
+        int green = this.image[x][y].getPixel()[1];
+        int blue = this.image[x][y].getPixel()[2];
+
+        Color color = new Color(red, green, blue);
+
+        img.setRGB(x, y, color.getRGB());
       }
     }
-    return max;
+    File outputFile = new File(pathName);
+    String formatName = getFileFormat(pathName);
+    try {
+      ImageIO.write(img, formatName, outputFile);
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
   }
 
-  //used for testing purposes only
+  public String getFileFormat(String fileAddress) {
+    int index = 0;
+    for(int i = fileAddress.length() - 1; i >= 0; i--) {
+      if(String.valueOf(fileAddress.charAt(i)).equals(".")) {
+        index = i;
+        break;
+      }
+    }
+    return fileAddress.substring(index + 1);
+  }
+
   public Pixel[][] getImage() {
     return image;
   }
 
-  /**
-   * Converts the image to a StringBuilder.
-   *
-   * @return StringBuilder: a mutable sequence of characters that represent the PPM
-   */
-  @Override
-  public StringBuilder convertToString() {
-    return null;
-  }
+
+
+
 
   /**
    * Flips the image horizontally.
