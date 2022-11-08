@@ -2,21 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9c253895-6869-4775-af85-7992f558aa25" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/README" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Test/PPMImageTestInterface.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Test/TestController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Test/TestPixel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hw4.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/controller/ControllerImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/controller/ControllerInterface.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/ImageProcessing.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/ImageInterface.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/SimpleViewInterface.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Test/TestGenericImage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/GenericImage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/ControllerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/ControllerImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,7 +46,8 @@
     "WebServerToolWindowFactoryState": "false",
     "last_opened_file_path": "/Users/evansuslovich/Desktop/CS-3500/homework/hw4/src/Pictures",
     "nodejs_package_manager_path": "npm",
-    "run.code.analysis.last.selected.profile": "pProject Default"
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "preferences.lookFeel"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -76,7 +66,20 @@
       <recent name="Strategies" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.TestController.testLoad">
+  <component name="RunManager" selected="Application.ImageProcessing">
+    <configuration name="GenericImage" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="model.GenericImage" />
+      <module name="hw4" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ImageProcessing" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="main.ImageProcessing" />
       <module name="hw4" />
@@ -100,30 +103,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestPixel" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TestGenericImage.testGenericImageConstructor" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="hw4" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="TestPixel" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TestPixel.testIntensity" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="hw4" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="TestPixel" />
-      <option name="METHOD_NAME" value="testIntensity" />
+      <option name="MAIN_CLASS_NAME" value="TestGenericImage" />
+      <option name="METHOD_NAME" value="testGenericImageConstructor" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestPixel.testLuma" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TestGenericImage.testGenericImageConstructorPurple" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="hw4" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="TestPixel" />
-      <option name="METHOD_NAME" value="testLuma" />
+      <option name="MAIN_CLASS_NAME" value="TestGenericImage" />
+      <option name="METHOD_NAME" value="testGenericImageConstructorPurple" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -131,11 +125,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.TestController.testLoad" />
         <item itemvalue="Application.ImageProcessing" />
-        <item itemvalue="JUnit.TestPixel" />
-        <item itemvalue="JUnit.TestPixel.testIntensity" />
-        <item itemvalue="JUnit.TestPixel.testLuma" />
+        <item itemvalue="JUnit.TestGenericImage.testGenericImageConstructorPurple" />
+        <item itemvalue="JUnit.TestGenericImage.testGenericImageConstructor" />
+        <item itemvalue="Application.GenericImage" />
+        <item itemvalue="JUnit.TestController.testLoad" />
       </list>
     </recent_temporary>
   </component>
@@ -160,6 +154,7 @@
       <workItem from="1667426825936" duration="1750000" />
       <workItem from="1667481400790" duration="1132000" />
       <workItem from="1667496635697" duration="16390000" />
+      <workItem from="1667868065579" duration="8482000" />
     </task>
     <servers />
   </component>
