@@ -6,12 +6,6 @@ package model;
 public interface ImageInterface {
 
   /**
-   * Converts the image to a StringBuilder.
-   * @return StringBuilder: a mutable sequence of characters that represent the PPM
-   */
-  public StringBuilder convertToString();
-
-  /**
    * Flips the image horizontally.
    * @return Pixel[][]: a 2D array of pixels that represent the image.
    */
