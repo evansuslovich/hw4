@@ -1,0 +1,91 @@
+Week 4: Image Processing
+
+Priya Aggarwal & Evan Suslovich
+
+
+SCRIPT:
+
+The image “art.ppm” and all the variations were created by Evan
+and has been authorized for its use for this project.
+
+INSTRUCTIONS:
+Input each separate line into the command terminal of IntelliJ.
+Some of them are purposely made not be logically correct and
+should output a reason why that command did not work to show
+how our program handles errors. For example, the first command
+is to save an image that has never been uploaded.
+
+save ./src/Pictures/panda.ppm panda
+turn-red panda panda-red
+load ./src/Pictures/art.ppm art
+turn-red art art-red
+turn-green art art-green
+turn-blue art-green art-green-blue
+value-component art art-value
+horizontal-flip art-value art-value-fliph
+vertical-flip art-value-fliph art-value-fliph-flipv
+save ./src/Pictures/art-red.ppm art-red
+save ./src/Pictures/art-green-blue.ppm art-green-blue
+save ./src/Pictures/art-value-fliph-flipv.ppm art-value-fliph-flipv
+
+
+
+___________________________________________________________________________________________________
+Main:
+
+    - Purpose:
+      Allows users of our program to run our ImageProcessing project.
+___________________________________________________________________________________________________
+
+
+
+___________________________________________________________________________________________________
+Controller:
+
+     - Purpose:
+     Allows the user to input commands into the terminal with feedback
+
+        -ControllerInterface:
+            -contains the processImage function
+
+
+        -ControllerImpl:
+            -implements the processImage from the ControllerInterface.
+            -handles all inputs from the user
+___________________________________________________________________________________________________
+
+
+___________________________________________________________________________________________________
+Model:
+    - Purpose:
+    All the functionality of this program: storing the image and imageName, manipulating images,
+    Pixel class which is the RGB value object, PPMImage is the class for PPM image
+
+
+    More Specific Functionality/Purpose:
+
+    -ImageInterface
+        -ImageInterface holds all the functions required for this assignment
+        -convertToString() returns a StringBuilder containing the String equivalent of the PPM
+    -ImageModel
+        -Contains the listOfImages along with functions to add and remove images
+    -Pixel
+        -An object that holds the red, green, blue values.
+        -All manipulation of images goes down to the pixel level
+    -PPMImage
+        -Object for the PPM image
+        -reads the PPM, implements all methods in the ImageInterface, and helpers
+___________________________________________________________________________________________________
+
+___________________________________________________________________________________________________
+View:
+    - Purpose:
+    Allows the user to receive feedback on how their commands have been recieved by the program
+
+    - SimpleViewInterface
+        - An interface to hold all potential views when the view becomes more complicated and
+          there is more variation
+    - SimpleView
+        - Implements the SimpleViewInterface
+        - Contains an appendable that the controller outputs messages to
+___________________________________________________________________________________________________
