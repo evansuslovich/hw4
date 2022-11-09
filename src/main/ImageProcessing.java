@@ -1,5 +1,6 @@
 package main;
 
+import java.io.IOException;
 import java.io.InputStreamReader;
 
 import controller.ControllerImpl;
@@ -24,6 +25,10 @@ public class ImageProcessing {
 
     ControllerImpl controller = new ControllerImpl(reader, model, view);
 
-    controller.processImage();
+    try {
+      controller.processImage();
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
   }
 }
