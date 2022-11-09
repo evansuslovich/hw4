@@ -6,15 +6,16 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.security.CodeSigner;
 import java.util.Scanner;
 
 import javax.imageio.ImageIO;
 
 public abstract class AbstractImage implements ImageInterface {
 
-  private Pixel[][] image;
-  private int width;
-  private int height;
+  protected Pixel[][] image;
+  protected int width;
+  protected int height;
 
   public AbstractImage(String fileAddress) throws IOException {
     this.image = readFile(fileAddress);
@@ -28,7 +29,6 @@ public abstract class AbstractImage implements ImageInterface {
     this.height = this.image[0].length;
   }
 
-
   public Pixel[][] readFile(String fileAddress) throws IOException {
 
     String fileFormat = getFileFormat(fileAddress);
@@ -40,6 +40,19 @@ public abstract class AbstractImage implements ImageInterface {
     }
   }
 
+
+
+  public void saveImage(String pathname) {
+    String fileFormat = getFileFormat(pathname);
+
+    if (fileFormat.equals("ppm")) {
+      PPMImage ppmImage = new PPMImage(this.image);
+      ppmImage.saveImage(pathname);
+    } else {
+      GenericImage genericImage = new GenericImage(this.image);
+      genericImage.saveImage(pathname);
+    }
+  }
 
   // used to read the PPM images
   public Pixel[][] readPPM(String filename) throws FileNotFoundException {
@@ -98,12 +111,15 @@ public abstract class AbstractImage implements ImageInterface {
   }
 
 
- // reading any generic images  
+ // reading any generic images
   public Pixel[][] readImage(String filename) throws IOException {
 
     BufferedImage img =  ImageIO.read(new File(filename));
 
     Pixel[][] newImage = new Pixel[img.getWidth()][img.getHeight()];
+
+    System.out.println(img.getWidth());
+    System.out.println(img.getHeight());
 
     for (int x = 0; x < img.getWidth(); x++) {
       for (int y = 0; y < img.getHeight(); y++) {
@@ -114,8 +130,98 @@ public abstract class AbstractImage implements ImageInterface {
     return newImage;
   }
 
+  public Pixel[][] flipHorizontally() {
+    Pixel[][] newImage = new Pixel[this.width][this.height];
 
+    for (int y = 0; y < this.height; y++) {
+      for (int x = 0; x < this.width; x++) {
+        newImage[x][y] = image[x][image[x].length - y - 1];
+      }
+    }
+    return newImage;
 
+  }
+
+  public Pixel[][] flipVertically() {
+    Pixel[][] newImage = new Pixel[this.width][this.height];
+
+    for (int y = 0; y < this.height; y++) {
+      for (int x = 0; x < this.width; x++) {
+        newImage[x][y] = image[image.length - x - 1][y];
+      }
+    }
+    return newImage;
+  }
+
+  public Pixel[][] turnRedGreyScale() {
+    Pixel[][] newImage = new Pixel[this.width][this.height];
+    for (int h = 0; h <this.height; h++) {
+      for (int w = 0; w < this.width; w++) {
+        newImage[w][h] = this.image[w][h].redComponent();
+      }
+    }
+    return newImage;
+  }
+
+  public Pixel[][] turnGreenGreyScale() {
+    Pixel[][] newImage = new Pixel[this.width][this.height];
+    for (int h = 0; h <this.height; h++) {
+      for (int w = 0; w < this.width; w++) {
+        newImage[w][h] = this.image[w][h].greenComponent();
+      }
+    }
+    return newImage;
+  }
+
+  public Pixel[][] turnBlueGreyScale() {
+    Pixel[][] newImage = new Pixel[this.width][this.height];
+    for (int h = 0; h <this.height; h++) {
+      for (int w = 0; w < this.width; w++) {
+        newImage[w][h] = this.image[w][h].blueComponent();
+      }
+    }
+    return newImage;
+  }
+
+  public Pixel[][] turnValueGreyScale() {
+    Pixel[][] newImage = new Pixel[this.width][this.height];
+    for (int h = 0; h <this.height; h++) {
+      for (int w = 0; w < this.width; w++) {
+        newImage[w][h] = this.image[w][h].value();
+      }
+    }
+    return newImage;
+  }
+
+  public Pixel[][] turnLumaGreyScale() {
+    Pixel[][] newImage = new Pixel[this.width][this.height];
+    for (int h = 0; h <this.height; h++) {
+      for (int w = 0; w < this.width; w++) {
+        newImage[w][h] = this.image[w][h].luma();
+      }
+    }
+    return newImage;
+  }
+
+  public Pixel[][] turnIntensityGreyScale() {
+    Pixel[][] newImage = new Pixel[this.width][this.height];
+    for (int h = 0; h <this.height; h++) {
+      for (int w = 0; w < this.width; w++) {
+        newImage[w][h] = this.image[w][h].intensity();
+      }
+    }
+    return newImage;
+  }
+
+  public Pixel[][] changeBrightness(int value) {
+    Pixel[][] newImage = new Pixel[this.width][this.height];
+    for (int h = 0; h <this.height; h++) {
+      for (int w = 0; w < this.width; w++) {
+        newImage[w][h] = this.image[w][h].brightenPixel(value);
+      }
+    }
+    return newImage;
+  }
 
 
 }
