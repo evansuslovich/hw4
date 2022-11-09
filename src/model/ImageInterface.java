@@ -58,4 +58,6 @@ public interface ImageInterface {
    * @return Pixel[][]: a 2D array of pixels that represent the image.
    */
   public Pixel[][] changeBrightness(int value);
+
+  public void saveImage(String pathName);
 }
