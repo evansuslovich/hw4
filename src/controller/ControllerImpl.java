@@ -23,9 +23,10 @@ public class ControllerImpl implements ControllerInterface {
 
   /**
    * ControllerImpl constructor.
+   *
    * @param readable : Readable, Source for the Characters
-   * @param model : ImageModel, the image's functionality
-   * @param view : SimpleView, communicating back to the user with an appendable.
+   * @param model    : ImageModel, the image's functionality
+   * @param view     : SimpleView, communicating back to the user with an appendable.
    * @throws IllegalArgumentException : if any of the parameters are null
    */
   public ControllerImpl(Readable readable, ImageModel model, SimpleView view)
@@ -38,7 +39,8 @@ public class ControllerImpl implements ControllerInterface {
     this.view = view;
   }
 
-  public void processImage() {
+  @Override
+  public void processImage() throws IOException {
     boolean gameOver = false;
 
     while (!gameOver) {
@@ -71,20 +73,21 @@ public class ControllerImpl implements ControllerInterface {
 
   /**
    * Helper function to reduce code in the processImage class. Used when user quits the program.
+   *
    * @param s : the string representing the possible quitting command
    * @return Boolean: true --> game is quit, false --> game is not quit
    */
   private boolean isQuit(String s) {
-    if(s.equalsIgnoreCase("q") || s.equalsIgnoreCase("quit")) {
+    if (s.equalsIgnoreCase("q") || s.equalsIgnoreCase("quit")) {
       this.renderMessage("Program Quit!");
       return true;
     }
     return false;
   }
 
-
   /**
    * Adds the message to the appendable.
+   *
    * @param s : String, the string for communicating back with the user.
    */
   private void renderMessage(String s) {
@@ -96,10 +99,11 @@ public class ControllerImpl implements ControllerInterface {
   }
 
   /**
-   * Takes the commands from the user and corresponds with an error or the model's command's method
-   * @param inputs : ArrayList<String>, an arraylist of the inputs from the user
+   * Takes the commands from the user and corresponds with an error or the command.
+   *
+   * @param inputs : ArrayList of Strings, an arraylist of the inputs from the user
    */
-  private void takeCommands(ArrayList<String> inputs) {
+  private void takeCommands(ArrayList<String> inputs) throws IOException {
 
     // handles the image chosen by the user
     ImageInterface beginningImage;
@@ -128,8 +132,10 @@ public class ControllerImpl implements ControllerInterface {
         this.renderMessage("Image not found!");
         return;
       }
+
       // adds the image to the model with the PPM object along with the name given to it
       this.model.addImage(new PPMImage(beginningImage.changeBrightness(value)), saveAsName);
+      this.renderMessage("Image has been brightened by " + value);
       return;
     }
 
@@ -151,19 +157,8 @@ public class ControllerImpl implements ControllerInterface {
         return;
       }
 
-      StringBuilder builder = savedImage.convertToString();
+      savedImage.saveImage(imageName);
 
-
-      try {
-        BufferedWriter file = new BufferedWriter(new FileWriter(imageName));
-
-        file.write(String.valueOf(builder));
-        this.renderMessage("File is created successfully with the content.");
-
-        file.close();
-      } catch (IOException e) {
-        this.renderMessage(e.getMessage());
-      }
       return;
     }
 
@@ -172,16 +167,20 @@ public class ControllerImpl implements ControllerInterface {
         this.model.removeImage(saveAsImage);
       }
 
+
       try {
 
-        this.model.addImage(new PPMImage(imageName), saveAsImage);
+        if(getFileFormat(imageName).equals("ppm")) {
+          this.model.addImage(new PPMImage(imageName), saveAsImage);
+        } else {
+          this.model.addImage(new GenericImage(imageName), saveAsImage);
+        }
 
-//        if(file.equals("ppm")) {
-//          this.model.addImage(new PPMImage(imageName), saveAsImage);
-//        } else {
-//          this.model.addImage(new GenericImage(imageName), saveAsImage);
-//        }
-//        this.renderMessage("Loaded image: '" + saveAsImage + "'\n");
+
+
+
+
+        this.renderMessage("Loaded image: '" + saveAsImage + "'\n");
 
       } catch (FileNotFoundException e) {
         this.renderMessage("File not found");
@@ -251,5 +250,16 @@ public class ControllerImpl implements ControllerInterface {
         this.renderMessage("Command not found!");
 
     }
+  }
+
+  private String getFileFormat(String fileAddress) {
+    int index = 0;
+    for(int i = fileAddress.length() - 1; i >= 0; i--) {
+      if(String.valueOf(fileAddress.charAt(i)).equals(".")) {
+        index = i;
+        break;
+      }
+    }
+    return fileAddress.substring(index + 1);
   }
 }
